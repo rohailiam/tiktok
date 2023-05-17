@@ -11,6 +11,10 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.status(200).send('<marquee>Running...</marquee>')
+})
+
 app.post('/data', async (req, res) => {
   const { body } = req;
   let url = body.url
