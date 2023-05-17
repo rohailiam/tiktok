@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 app.post('/data', async (req, res) => {
   const { body } = req;
   let url = body.url
+  console.log(body);
   console.log(url)
   let data = fetch(url)
   .then(response => {
