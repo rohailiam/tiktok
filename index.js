@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import cheerio from 'cheerio'
-let url = "https://www.tiktok.com/@okx/video/7223113390380698886"
+// let url = "https://www.tiktok.com/@okx/video/7223113390380698886"
 
 import express from 'express';
 import cors from 'cors';
@@ -16,9 +16,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/data', async (req, res) => {
-  const { body } = req;
-  let url = body.url
-  console.log(body);
+  const { url } = req.query;
+  // console.log(req.query)
+  // let url = body.url
+  // console.log(body);
   console.log(url)
   let data = fetch(url)
   .then(response => {
