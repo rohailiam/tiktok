@@ -17,9 +17,6 @@ app.get('/', (req, res) => {
 
 app.post('/data', async (req, res) => {
   const { url } = req.query;
-  // console.log(req.query)
-  // let url = body.url
-  // console.log(body);
   console.log(url)
   let data = fetch(url)
   .then(response => {
@@ -31,6 +28,7 @@ app.post('/data', async (req, res) => {
     throw new Error('Network response was not okay.');
   })
   .then(async (text) => {
+    console.log(text)
     let videoData = {}
     const $ = cheerio.load(text)
     const dataScript = $('#SIGI_STATE').text();
@@ -39,6 +37,18 @@ app.post('/data', async (req, res) => {
     const keys = Object.keys(ItemModule);
     let key = keys[0];
     const dataObject = ItemModule[`${key}`]
+    let videoUrl = `https://www.tiktok.com/@${dataObject.author}/video/${dataObject.id}`
+    let createTime = dataObject.createTime;
+    let scheduleTime = dataObject.scheduleTime;
+    let finalTime;
+    if (scheduleTime !== 0) {
+      finalTime = new Date(scheduleTime * 1000);
+    }
+    else {
+      finalTime = new Date(createTime * 1000);
+    }
+    videoData.createTime = `${finalTime.getDate()}-${finalTime.getMonth() + 1}-${finalTime.getFullYear()}`
+    videoData.videoUrl =  videoUrl
     videoData.author = (dataObject.author).trim();
     videoData.desc = dataObject.desc
     videoData = {...videoData, ...dataObject.stats}
