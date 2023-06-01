@@ -51,6 +51,7 @@ app.post('/youtube', async (req, res) => {
       if(comments) {
         comments = comments.split(' ')[0]
       }
+      let channelUrl = overlayData.reelPlayerHeaderSupportedRenderers.reelPlayerHeaderRenderer.channelNavigationEndpoint.commandMetadata.webCommandMetadata.url
       // let channel = overlayData.reelPlayerHeaderSupportedRenderers.reelPlayerHeaderRenderer.ownerText.runs[0].text
       // let comments = overlayData.viewCommentsButton.buttonRenderer.text.simpleText
       console.log('likes ', likes);
@@ -60,6 +61,7 @@ app.post('/youtube', async (req, res) => {
       console.log('publish date ', publishDate);
       console.log('title ', title);
       console.log('comments ', comments);
+      console.log('channel url ', channelUrl);
       // console.log(likes)
       // let cleanData = data.replace('var ytInitialData = ', '');
       // let scriptIndex = cleanData.indexOf('(function serverContract()');
