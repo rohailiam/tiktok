@@ -64,8 +64,10 @@ app.post("/youtube", async (req, res) => {
           let title =
             overlayData.reelPlayerHeaderSupportedRenderers
               .reelPlayerHeaderRenderer.reelTitleText.runs[0].text;
+
+          console.log(overlayData.viewCommentsButton)
           let comments =
-            overlayData.viewCommentsButton.buttonRenderer.accessibility.label;
+            overlayData.viewCommentsButton.buttonRenderer.text.simpleText;
           if (comments) {
             comments = comments.split(" ")[0];
           }
