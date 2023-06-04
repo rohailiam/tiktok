@@ -83,6 +83,7 @@ app.post("/youtube", async (req, res) => {
             title,
             comments,
             channelUrl,
+            url
           };
         }
       }
@@ -115,7 +116,6 @@ app.post("/tiktok", async (req, res) => {
       const keys = Object.keys(ItemModule);
       let key = keys[0];
       const dataObject = ItemModule[`${key}`];
-      console.log(dataObject);
       let videoUrl = `https://www.tiktok.com/@${dataObject.author}/video/${dataObject.id}`;
       let createTime = dataObject.createTime;
       let scheduleTime = dataObject.scheduleTime;
